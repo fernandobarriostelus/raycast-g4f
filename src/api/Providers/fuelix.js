@@ -20,54 +20,71 @@ export const FuelIXProvider = {
   models: [
     {
       "model": "aia-gpt-4o",
+      stream: true,
     },
     {
       "model": "claude-3-7-sonnet",
+      stream: true,
     },
     {
       "model": "claude-4-sonnet",
+      stream: true,
     },
     {
       "model": "cursor-c-3-7-sonnet",
+      stream: true,
     },
     {
       "model": "dall-e-3",
+      stream: true,
     },
     {
       "model": "gemini-2.5-flash",
+      stream: true,
     },
     {
       "model": "gemini-2.5-pro",
+      stream: true,
     },
     {
       "model": "gpt-4.1",
+      stream: true,
     },
     {
       "model": "gpt-4o",
+      stream: true,
     },
     {
       "model": "gpt-4o-mini",
+      stream: true,
     },
     {
       "model": "imagen-3",
+      stream: true,
     },
     {
       "model": "imagen-3-fast",
+      stream: true,
     },
     {
       "model": "llama-3.3-70b",
+      stream: true,
     },
     {
       "model": "o1-mini",
+      stream: true,
     },
     {
       "model": "o3-mini",
+      stream: true,
     },
     {
       "model": "o4-mini",
+      stream: true,
     },
     {
       "model": "whisper-1",
+      stream: true,
     }
   ],
   info: {
@@ -84,6 +101,7 @@ export const FuelIXProvider = {
     const config = { ...reqBody, ...reqConfig };
 
     chat = messages_to_json(chat);
+
 
     let headers = {
       Authorization: apiKey ? `Bearer ${apiKey}` : undefined,
@@ -149,31 +167,8 @@ export const FuelIXProvider = {
     for (const c of chunks) yield c;
   },
   getChunk: function (json) {
-    switch (this.info?.type) {
-      case "Anthropic": {
-        let chunk = "";
-        if (json["delta"]["thinking"]) {
-          if (!this.isThinking) {
-            this.isThinking = true;
-            chunk += "\n<thinking>\n";
-          }
-          chunk += json["delta"]["thinking"];
-        }
-        if (json["delta"]["text"]) {
-          if (this.isThinking) {
-            this.isThinking = false;
-            chunk += "\n</thinking>\n\n";
-          }
-          chunk += json["delta"]["text"];
-        }
-        return chunk;
-      }
-      case "OpenAI":
-      default: {
-        let chunk = json["choices"][0]["delta"] ?? json["choices"][0]["message"];
-        chunk = chunk?.content;
-        return chunk;
-      }
-    }
+    let chunk = json["choices"][0]["delta"] ?? json["choices"][0]["message"];
+    chunk = chunk?.content;
+    return chunk;
   },
 };
