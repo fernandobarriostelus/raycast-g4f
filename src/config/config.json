@@ -1,6 +1,6 @@
 {
   "defaultPreferences": {
-    "defaultProvider": "Nexra_gpt-4o",
+    "defaultProvider": "FuelIX_gpt-4o",
     "webSearch": "off",
     "proxyURL": "",
     "smartChatNaming": false,

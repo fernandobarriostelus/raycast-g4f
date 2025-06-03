@@ -11,6 +11,7 @@ import {
   ManageCustomAPIs,
   ManageGoogleGeminiAPI,
   ManageRaycastAIAPI,
+  FuelIXAPI,
 } from "#root/src/components/preferences/manageCustomAPIs.jsx";
 import { ManageAIPresets } from "#root/src/components/preferences/manageAIPresets.jsx";
 
@@ -44,6 +45,9 @@ export default function ManagePreferences() {
       <List.Section title="Manage APIs">
         {/* - OpenAI-compatible APIs */}
         {PreferenceComponent({ title: "Custom APIs", target: <ManageCustomAPIs /> })}
+
+
+        {PreferenceComponent({ title: "FuelIX", target: <FuelIXAPI /> })}
 
         {/* - Google Gemini */}
         {PreferenceComponent({ title: "Google Gemini", target: <ManageGoogleGeminiAPI /> })}

@@ -1,6 +1,7 @@
 /// This module contains all the information (i.e. constants) about the providers.
 
 /// Provider modules
+import { FuelIXProvider } from "../Providers/fuelix.js";
 import { NexraProvider } from "../Providers/nexra.js";
 import { DeepInfraProvider } from "../Providers/deepinfra.js";
 import { BlackboxProvider } from "../Providers/blackbox.js";
@@ -16,6 +17,7 @@ import { PhindProvider } from "../Providers/phind.js";
 import { GeminiProvider } from "../Providers/google_gemini.js";
 
 export const providers = [
+  FuelIXProvider,
   NexraProvider,
   DeepInfraProvider,
   BlackboxProvider,

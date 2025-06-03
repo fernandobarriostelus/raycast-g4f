@@ -199,6 +199,34 @@ export const ManageCustomAPIs = () => {
   );
 };
 
+export const FuelIXAPI = () => {
+  return (
+    <Form
+      actions={
+        <ActionPanel>
+          <Action.SubmitForm
+            title="Save"
+            onSubmit={async (values) => {
+              await updatePreferences("FuelIXAPIKey", values.apiKey);
+              await showToast(Toast.Style.Success, "Configuration saved");
+            }}
+          />
+        </ActionPanel>
+      }
+    >
+      <Form.Description text="Configure the FuelIX API." />
+      <Form.TextArea
+        id="apiKey"
+        title="API Keys"
+        info={
+          "Add your FuelIX API key here. This is required for the FuelIX provider to work."
+        }
+        defaultValue={Preferences["FuelIXAPIKey"]}
+      />
+    </Form>
+  );
+};
+
 export const ManageGoogleGeminiAPI = () => {
   return (
     <Form
